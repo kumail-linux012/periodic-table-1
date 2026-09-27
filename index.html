@@ -4,7 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
         <meta name="theme-color" content="#04060e">
+        <!-- 📱 PWA MANIFEST -->
+        <link rel="manifest" id="manifest-link">
+        <!-- 📱 PWA META -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="Periodic Table">
+        <meta name="application-name" content="Periodic Table">
         <title>Periodic Table — Aurora Final</title>
+        <!-- 🎨 FAVICON - Atom icon with glowing theme -->
+        <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2300e5c0'/%3E%3Cstop offset='100%25' stop-color='%237b61ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='12' fill='url(%23g)'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%2300e5c0' stroke-width='3'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%237b61ff' stroke-width='3' transform='rotate(60 50 50)'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%23ff5fb0' stroke-width='3' transform='rotate(120 50 50)'/%3E%3Ccircle cx='92' cy='50' r='4' fill='%2300e5c0'/%3E%3Ccircle cx='29' cy='86' r='4' fill='%237b61ff'/%3E%3Ccircle cx='29' cy='14' r='4' fill='%23ff5fb0'/%3E%3C/svg%3E">
+        <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2304060e'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%2300e5c0'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%2300e5c0' stroke-width='3'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%237b61ff' stroke-width='3' transform='rotate(60 50 50)'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%23ff5fb0' stroke-width='3' transform='rotate(120 50 50)'/%3E%3C/svg%3E">
+        <meta name="theme-color" content="#04060e">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
@@ -2563,6 +2575,112 @@ window.addEventListener('hashchange',()=>{
 if('speechSynthesis' in window){
   speechSynthesis.onvoiceschanged=()=>{};
 }
+/* =========================================================
+   PWA SETUP - Auto-generated manifest + service worker
+   ========================================================= */
+(function setupPWA(){
+  // ---------- 1. Build the manifest ----------
+  const manifest = {
+    name: 'Periodic Table — Aurora Final',
+    short_name: 'Periodic',
+    description: 'Interactive Periodic Table with 118 elements, quiz, memory game, and 20+ features',
+    start_url: './',
+    display: 'standalone',
+    orientation: 'any',
+    background_color: '#04060e',
+    theme_color: '#00e5c0',
+    scope: './',
+    icons: [
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%2304060e'/%3E%3Ccircle cx='256' cy='256' r='60' fill='%2300e5c0'/%3E%3Cellipse cx='256' cy='256' rx='200' ry='80' fill='none' stroke='%2300e5c0' stroke-width='12'/%3E%3Cellipse cx='256' cy='256' rx='200' ry='80' fill='none' stroke='%237b61ff' stroke-width='12' transform='rotate(60 256 256)'/%3E%3Cellipse cx='256' cy='256' rx='200' ry='80' fill='none' stroke='%23ff5fb0' stroke-width='12' transform='rotate(120 256 256)'/%3E%3C/svg%3E",
+        sizes: '512x512',
+        type: 'image/svg+xml',
+        purpose: 'any'
+      },
+      {
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%2304060e'/%3E%3Ccircle cx='256' cy='256' r='60' fill='%2300e5c0'/%3E%3Cellipse cx='256' cy='256' rx='200' ry='80' fill='none' stroke='%2300e5c0' stroke-width='12'/%3E%3Cellipse cx='256' cy='256' rx='200' ry='80' fill='none' stroke='%237b61ff' stroke-width='12' transform='rotate(60 256 256)'/%3E%3Cellipse cx='256' cy='256' rx='200' ry='80' fill='none' stroke='%23ff5fb0' stroke-width='12' transform='rotate(120 256 256)'/%3E%3C/svg%3E",
+        sizes: '192x192',
+        type: 'image/svg+xml',
+        purpose: 'maskable'
+      }
+    ]
+  };
+
+  const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+  const manifestURL = URL.createObjectURL(manifestBlob);
+  document.getElementById('manifest-link').setAttribute('href', manifestURL);
+
+  // ---------- 2. Service Worker (offline support) ----------
+  if ('serviceWorker' in navigator) {
+    const swCode = `
+      const CACHE = 'periodic-v1';
+      self.addEventListener('install', e => {
+        self.skipWaiting();
+      });
+      self.addEventListener('activate', e => {
+        e.waitUntil(self.clients.claim());
+      });
+      self.addEventListener('fetch', e => {
+        e.respondWith(
+          caches.match(e.request).then(cached => {
+            return cached || fetch(e.request).then(res => {
+              if (e.request.method === 'GET' && res.status === 200) {
+                const clone = res.clone();
+                caches.open(CACHE).then(c => c.put(e.request, clone));
+              }
+              return res;
+            }).catch(() => cached);
+          })
+        );
+      });
+    `;
+
+    const swBlob = new Blob([swCode], { type: 'application/javascript' });
+    const swURL = URL.createObjectURL(swBlob);
+
+    navigator.serviceWorker.register(swURL, { scope: './' }).then(reg => {
+      console.log('✅ PWA ready — app is installable!');
+    }).catch(err => {
+      console.log('SW registration skipped:', err.message);
+    });
+  }
+
+  // ---------- 3. Install button (custom) ----------
+  let deferredPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Add install button to topbar
+    const actions = document.querySelector('.top-actions');
+    if (actions && !document.getElementById('installBtn')) {
+      const btn = document.createElement('button');
+      btn.className = 'btn';
+      btn.id = 'installBtn';
+      btn.innerHTML = '<span class="ico">📲</span><span id="installLbl">Install</span>';
+      btn.style.background = 'linear-gradient(135deg, color-mix(in srgb, var(--accent) 25%, var(--glass)), color-mix(in srgb, var(--accent-2) 25%, var(--glass)))';
+      btn.style.borderColor = 'color-mix(in srgb, var(--accent) 55%, transparent)';
+      btn.onclick = async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          toast('📲 App installed! Find it on your home screen.');
+          btn.remove();
+        }
+        deferredPrompt = null;
+      };
+      actions.insertBefore(btn, actions.firstChild);
+    }
+  });
+
+  // Hide install button after install
+  window.addEventListener('appinstalled', () => {
+    const btn = document.getElementById('installBtn');
+    if (btn) btn.remove();
+    toast('🎉 Installed! Open from your home screen.');
+  });
+})();
 </script>
 </body>
 </html>
